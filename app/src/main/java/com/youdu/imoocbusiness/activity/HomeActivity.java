@@ -41,6 +41,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.content_layout, mHomeFragment);
         fragmentTransaction.commit();
+        changeStatusBarColor(R.color.color_fed952);
     }
 
     private void initView() {

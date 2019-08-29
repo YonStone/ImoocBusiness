@@ -40,7 +40,7 @@
             android:textColor="@color/color_cdcdcd"
             android:textSize="16sp" />
     </RelativeLayout>
-
+    <!--需要代码启动动画-->
     <ImageView
         android:id="@+id/loading_view"
         android:layout_width="match_parent"
