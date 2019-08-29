@@ -7,6 +7,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author vision
+ * @desc 提供两个线程安全的ConcurrentHashMap用来储存请求参数,
+ * 创建Request时再把Map中的键值拼接到url中
  */
 public class RequestParams {
 
