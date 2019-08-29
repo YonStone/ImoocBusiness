@@ -33,6 +33,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeStatusBarColor(R.color.color_fed952);
         setContentView(R.layout.activity_home);
         initView();
 
@@ -41,7 +42,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.content_layout, mHomeFragment);
         fragmentTransaction.commit();
-        changeStatusBarColor(R.color.color_fed952);
     }
 
     private void initView() {
