@@ -14,6 +14,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import youdu.com.yonstone_sdk.okhttp.cookie.SimpleCookieJar;
 import youdu.com.yonstone_sdk.okhttp.https.HttpsUtils;
+import youdu.com.yonstone_sdk.okhttp.response.CommonJsonCallback;
 
 /**
  * @author YonStone
@@ -77,7 +78,7 @@ public class CommonOkHttpClient {
      * @param request
      * @return
      */
-    public static Call sendRequest(Request request, Callback commonBack) {
+    public static Call sendRequest(Request request, CommonJsonCallback commonBack) {
         Call call = mOkHttpClient.newCall(request);
         call.enqueue(commonBack);
         return call;
