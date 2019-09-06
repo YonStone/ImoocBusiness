@@ -68,6 +68,7 @@ public class HotSalePagerAdapter extends PagerAdapter {
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO
 //                Intent intent = new Intent(mContext, CourseDetailActivity.class);
 //                intent.putExtra(CourseDetailActivity.COURSE_ID, value.adid);
 //                mContext.startActivity(intent);
