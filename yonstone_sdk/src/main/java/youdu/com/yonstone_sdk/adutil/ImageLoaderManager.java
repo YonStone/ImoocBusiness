@@ -21,7 +21,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
  * @date 2019/09/03
  * @desc
  */
-public class ImageLoaderUtil {
+public class ImageLoaderManager {
     private static final int THREAD_COUNT = 2;
     private static final int PRIORITY = 2;
     private static final int MEMORY_CACHE_SIZE = 2 * 1024 * 1024;
@@ -29,15 +29,15 @@ public class ImageLoaderUtil {
     private static final int CONNECTION_TIME_OUT = 5 * 1000;
     private static final int READ_TIME_OUT = 30 * 1000;
 
-    private static ImageLoaderUtil mInstance = null;
+    private static ImageLoaderManager mInstance = null;
     private static ImageLoader mLoader = null;
 
 
-    public static ImageLoaderUtil getInstance(Context context) {
+    public static ImageLoaderManager getInstance(Context context) {
         if (mInstance == null) {
-            synchronized (ImageLoaderUtil.class) {
+            synchronized (ImageLoaderManager.class) {
                 if (mInstance == null) {
-                    mInstance = new ImageLoaderUtil(context);
+                    mInstance = new ImageLoaderManager(context);
                 }
             }
         }
@@ -49,7 +49,7 @@ public class ImageLoaderUtil {
      *
      * @param context
      */
-    private ImageLoaderUtil(Context context) {
+    private ImageLoaderManager(Context context) {
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
                 .Builder(context)

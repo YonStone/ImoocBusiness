@@ -10,12 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.youdu.imoocbusiness.R;
+import com.youdu.imoocbusiness.adapter.CourseAdapter;
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
@@ -41,7 +41,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     /**
      * data
      */
-//    private CourseAdapter mAdapter;
+    private CourseAdapter mAdapter;
     private BaseRecommendModel mRecommendData;
 
     @Override
@@ -90,6 +90,29 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private void showSuccessView() {
+        if (mRecommendData.data.list != null && mRecommendData.data.list.size() > 0) {
+            mLoadingView.setVisibility(View.GONE);
+            mListView.setVisibility(View.VISIBLE);
+            //为listview添加头
+//            mListView.addHeaderView(new HomeHeaderLayout(mContext, mRecommendData.data.head));
+            mAdapter = new CourseAdapter(activity, mRecommendData.data.list);
+            mListView.setAdapter(mAdapter);
+//            mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+//                @Override
+//                public void onScrollStateChanged(AbsListView view, int scrollState) {
+//                }
+//
+//                @Override
+//                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                    mAdapter.updateAdInScrollView();
+//                }
+//            });
+        } else {
+            showErrorView();
+        }
+    }
+
+    private void showErrorView() {
 
     }
 
