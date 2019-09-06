@@ -1,19 +1,16 @@
 package youdu.com.yonstone_sdk.okhttp;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import youdu.com.yonstone_sdk.okhttp.cookie.SimpleCookieJar;
 import youdu.com.yonstone_sdk.okhttp.https.HttpsUtils;
+import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataHandle;
 import youdu.com.yonstone_sdk.okhttp.response.CommonJsonCallback;
 
 /**
@@ -37,16 +34,16 @@ public class CommonOkHttpClient {
         /**
          *  为所有请求添加请求头，看个人需求
          */
-        okHttpClientBuilder.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request()
-                        .newBuilder()
-                        .addHeader("User-Agent", "Imooc-Mobile") // 标明发送本次请求的客户端
-                        .build();
-                return chain.proceed(request);
-            }
-        });
+//        okHttpClientBuilder.addInterceptor(new Interceptor() {
+//            @Override
+//            public Response intercept(Chain chain) throws IOException {
+//                Request request = chain.request()
+//                        .newBuilder()
+//                        .addHeader("User-Agent", "Imooc-Mobile") // 标明发送本次请求的客户端
+//                        .build();
+//                return chain.proceed(request);
+//            }
+//        });
         okHttpClientBuilder.cookieJar(new SimpleCookieJar());
         okHttpClientBuilder.connectTimeout(TIME_OUT, TimeUnit.SECONDS);
         okHttpClientBuilder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
@@ -78,9 +75,9 @@ public class CommonOkHttpClient {
      * @param request
      * @return
      */
-    public static Call sendRequest(Request request, CommonJsonCallback commonBack) {
+    public static Call sendRequest(Request request, DisposeDataHandle handle) {
         Call call = mOkHttpClient.newCall(request);
-        call.enqueue(commonBack);
+        call.enqueue(new CommonJsonCallback(handle));
         return call;
     }
 }

@@ -12,10 +12,10 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import youdu.com.yonstone_sdk.okhttp.exception.OkHttpException;
 import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataHandle;
 import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataListener;
 import youdu.com.yonstone_sdk.okhttp.request.CommonRequest;
-import youdu.com.yonstone_sdk.okhttp.response.CommonJsonCallback;
 
 /**
  * @author YonStone
@@ -67,18 +67,32 @@ public class TestActivity extends AppCompatActivity {
      * 封装后的网络请求
      */
     private void test() {
+//        CommonOkHttpClient.sendRequest(
+//                CommonRequest.createGetRequest("www.imooc.com", null),
+//                new CommonJsonCallback(new DisposeDataHandle(new DisposeDataListener() {
+//                    @Override
+//                    public void onSuccess(Object responseObj) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Object reasonObj) {
+//
+//                    }
+//                })));
         CommonOkHttpClient.sendRequest(
                 CommonRequest.createGetRequest("www.imooc.com", null),
-                new CommonJsonCallback(new DisposeDataHandle(new DisposeDataListener() {
+                new DisposeDataHandle(new DisposeDataListener() {
                     @Override
                     public void onSuccess(Object responseObj) {
 
                     }
 
                     @Override
-                    public void onFailure(Object reasonObj) {
+                    public void onFailure(OkHttpException reasonObj) {
 
                     }
-                })));
+                })
+        );
     }
 }

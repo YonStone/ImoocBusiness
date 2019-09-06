@@ -1,5 +1,7 @@
 package youdu.com.yonstone_sdk.okhttp.listener;
 
+import youdu.com.yonstone_sdk.okhttp.exception.OkHttpException;
+
 /**
  * @author YonStone
  * @date 2019/09/03
@@ -14,5 +16,5 @@ public interface DisposeDataListener {
     /**
      * 请求失败回调事件处理
      */
-    public void onFailure(Object reasonObj);
+    public void onFailure(OkHttpException reasonObj);
 }

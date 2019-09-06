@@ -70,7 +70,7 @@ public class CommonJsonCallback implements Callback {
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
-        final String result = response.body().toString();
+        final String result = response.body().string();
         final ArrayList<String> cookieLists = handleCookie(response.headers());
         mDeliveryHandler.post(new Runnable() {
             @Override
@@ -96,18 +96,18 @@ public class CommonJsonCallback implements Callback {
         return tempList;
     }
 
-    private void handleResponse(String response) {
-        if (response == null || TextUtils.isEmpty(response)) {
+    private void handleResponse(Object response) {
+        if (response == null || TextUtils.isEmpty(response.toString())) {
             mListener.onFailure(new OkHttpException(NETWORK_ERROR, EMPTY_MSG));
             return;
         }
         try {
             JSONObject result = new JSONObject(response.toString());
-            if (mClass != null) {
+            if (mClass == null) {
                 mListener.onSuccess(result);
             } else {
                 Gson gson = new Gson();
-                Object object = gson.fromJson(response, mClass);
+                Object object = gson.fromJson(response.toString(), mClass);
                 if (object != null) {
                     mListener.onSuccess(object);
                 } else {
@@ -115,8 +115,9 @@ public class CommonJsonCallback implements Callback {
                 }
             }
         } catch (JSONException e) {
-            mListener.onFailure(new OkHttpException(OTHER_ERROR, e.getMessage()));
+            mListener.onFailure(new OkHttpException(NETWORK_ERROR, e.getMessage()));
             e.printStackTrace();
         }
+
     }
 }

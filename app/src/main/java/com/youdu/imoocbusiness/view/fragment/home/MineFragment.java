@@ -30,7 +30,6 @@ public class MineFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getActivity();
         mContentView = inflater.inflate(R.layout.fragment_mine_layout, container, false);
         return mContentView;
     }
