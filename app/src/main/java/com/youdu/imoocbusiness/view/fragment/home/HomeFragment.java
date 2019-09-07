@@ -19,6 +19,7 @@ import com.youdu.imoocbusiness.adapter.CourseAdapter;
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
+import com.youdu.imoocbusiness.view.home.HomeHeaderLayout;
 
 import youdu.com.yonstone_sdk.okhttp.exception.OkHttpException;
 import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataListener;
@@ -94,7 +95,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             mLoadingView.setVisibility(View.GONE);
             mListView.setVisibility(View.VISIBLE);
             //为listview添加头
-//            mListView.addHeaderView(new HomeHeaderLayout(mContext, mRecommendData.data.head));
+            mListView.addHeaderView(new HomeHeaderLayout(activity, mRecommendData.data.head));
             mAdapter = new CourseAdapter(activity, mRecommendData.data.list);
             mListView.setAdapter(mAdapter);
 //            mListView.setOnScrollListener(new AbsListView.OnScrollListener() {

@@ -24,5 +24,10 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3' //状态栏
+    //轮播
+    implementation(
+            'cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
     implementation project(path: ':yonstone_sdk')
 }
