@@ -11,7 +11,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
 
-import youdu.com.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 
 /**

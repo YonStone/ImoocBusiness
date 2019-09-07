@@ -1,7 +1,6 @@
 package com.youdu.imoocbusiness.view.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.module.recommend.RecommendFooterValue;
 
-import youdu.com.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 /**
  * @author YonStone

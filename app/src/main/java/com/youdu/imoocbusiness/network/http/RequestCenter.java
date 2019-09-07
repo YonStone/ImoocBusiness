@@ -2,11 +2,11 @@ package com.youdu.imoocbusiness.network.http;
 
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 
-import youdu.com.yonstone_sdk.okhttp.CommonOkHttpClient;
-import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataHandle;
-import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataListener;
-import youdu.com.yonstone_sdk.okhttp.request.CommonRequest;
-import youdu.com.yonstone_sdk.okhttp.request.RequestParams;
+import com.youdu.yonstone_sdk.okhttp.CommonOkHttpClient;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
+import com.youdu.yonstone_sdk.okhttp.request.CommonRequest;
+import com.youdu.yonstone_sdk.okhttp.request.RequestParams;
 
 /**
  * @author YonStone

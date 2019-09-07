@@ -3,12 +3,12 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+    <com.youdu.autoscrollviewpager.AutoScrollViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
 
-    <com.youdu.imoocbusiness.view.viewpagerindictor.CirclePageIndicator
+    <com.youdu.viewpagerindictor.CirclePageIndicator
         android:id="@+id/pager_indictor_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,7 +1,6 @@
 package com.youdu.imoocbusiness.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import com.youdu.imoocbusiness.module.recommend.RecommendBodyValue;
 
 import java.util.ArrayList;
 
-import youdu.com.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 /**
  * @author YonStone

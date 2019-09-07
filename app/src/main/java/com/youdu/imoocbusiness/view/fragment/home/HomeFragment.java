@@ -21,8 +21,8 @@ import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
 import com.youdu.imoocbusiness.view.home.HomeHeaderLayout;
 
-import youdu.com.yonstone_sdk.okhttp.exception.OkHttpException;
-import youdu.com.yonstone_sdk.okhttp.listener.DisposeDataListener;
+import com.youdu.yonstone_sdk.okhttp.exception.OkHttpException;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 
 /**
  * @author: Yonstone

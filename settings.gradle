@@ -1,1 +1,1 @@
-include ':app', ':yonstone_sdk'
+include ':app', ':yonstone_sdk', "library:custom_view"

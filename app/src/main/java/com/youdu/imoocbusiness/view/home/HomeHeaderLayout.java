@@ -12,10 +12,10 @@ import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.adapter.PhotoPagerAdapter;
 import com.youdu.imoocbusiness.module.recommend.RecommendFooterValue;
 import com.youdu.imoocbusiness.module.recommend.RecommendHeadValue;
-import com.youdu.imoocbusiness.view.viewpagerindictor.CirclePageIndicator;
 
-import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
-import youdu.com.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.autoscrollviewpager.AutoScrollViewPager;
+import com.youdu.viewpagerindictor.CirclePageIndicator;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 /**
  * @author: vision

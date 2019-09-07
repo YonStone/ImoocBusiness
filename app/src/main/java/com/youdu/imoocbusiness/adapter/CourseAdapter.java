@@ -19,8 +19,8 @@ import com.youdu.imoocbusiness.util.Util;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import youdu.com.yonstone_sdk.adutil.ImageLoaderManager;
-import youdu.com.yonstone_sdk.adutil.Utils;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.yonstone_sdk.adutil.Utils;
 
 /**
  * @author YonStone
