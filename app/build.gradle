@@ -26,5 +26,5 @@ dependencies {
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3' //状态栏
 
     implementation project(path: ':yonstone_sdk')
-    implementation project(path: ':library:custom_view')
+    implementation project(path: ':library:banner')
 }

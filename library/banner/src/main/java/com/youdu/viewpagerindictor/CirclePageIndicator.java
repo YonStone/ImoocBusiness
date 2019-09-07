@@ -34,6 +34,7 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewConfigurationCompat;
 import androidx.viewpager.widget.ViewPager;
 
+
 import com.youdu.custom_view.R;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
