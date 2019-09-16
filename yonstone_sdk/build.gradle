@@ -1,16 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
-
-
+    compileSdkVersion build_versions.targetSdk
+    buildToolsVersion build_versions.buildTools
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -21,14 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'androidx.appcompat:appcompat:1.0.2'
+    implementation deps.support.appcompat
 
-    api 'com.squareup.okhttp3:okhttp:3.3.0' //okttp依赖
-    api 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation deps.okhttp3
+    implementation deps.gson
+    implementation deps.universalimageloader
 }
