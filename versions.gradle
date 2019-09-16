@@ -22,12 +22,14 @@ deps.support = support
 /**
  * sdk
  */
-deps.okhttp3 = 'com.squareup.okhttp3:okhttp:3.3.0' //okttp依赖
-deps.gson = 'com.google.code.gson:gson:2.8.5'
-deps.universalimageloader = 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+deps.okhttpLibary = 'com.squareup.okhttp3:okhttp:3.3.0' //okttp依赖
+deps.gsonLibary = 'com.google.code.gson:gson:2.8.5'
+deps.universalimageloaderLibary = 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 //圆形图片
 deps.circleimageview = 'de.hdodenhof:circleimageview:2.1.0'
 //状态栏
 deps.systembartint = 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
+
+ext.deps = deps
