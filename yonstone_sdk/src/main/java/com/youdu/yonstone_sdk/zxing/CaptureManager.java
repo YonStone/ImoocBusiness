@@ -16,7 +16,7 @@
 package com.youdu.yonstone_sdk.zxing;
 
 
-import android.hardware.camera2.CameraManager;
+import com.youdu.yonstone_sdk.zxing.camera.CameraManager;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>

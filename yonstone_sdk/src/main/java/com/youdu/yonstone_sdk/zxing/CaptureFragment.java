@@ -16,14 +16,16 @@
 package com.youdu.yonstone_sdk.zxing;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.youdu.yonstone_sdk.R;
 import com.youdu.yonstone_sdk.zxing.camera.CameraManager;
 
 /**
