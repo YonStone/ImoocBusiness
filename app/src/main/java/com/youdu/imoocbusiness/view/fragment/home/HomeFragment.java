@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +23,7 @@ import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
 import com.youdu.imoocbusiness.view.home.HomeHeaderLayout;
+import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.okhttp.exception.OkHttpException;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 import com.youdu.yonstone_sdk.zxing.CaptureActivity;
@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
             case REQUEST_CODE_SCAN:
                 if (resultCode == Activity.RESULT_OK) {
                     String result = data.getStringExtra(Intents.Scan.RESULT);
-                    Toast.makeText(activity, result, Toast.LENGTH_SHORT).show();
+                    Toaster.show(activity, result);
 //                    String code = data.getStringExtra("SCAN_RESULT");
 //                    if (code.contains("http") || code.contains("https")) {
 //                        Intent intent = new Intent(mContext, AdBrowserActivity.class);
