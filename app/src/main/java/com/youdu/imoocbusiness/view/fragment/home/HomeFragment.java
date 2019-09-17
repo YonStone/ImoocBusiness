@@ -117,7 +117,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.fragment_home_layout, container, false);
         initView();
-        Toast.makeText(activity, "sldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsff", Toast.LENGTH_SHORT).show();
         return mContentView;
     }
 

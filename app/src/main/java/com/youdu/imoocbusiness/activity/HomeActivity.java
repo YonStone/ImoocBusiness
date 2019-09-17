@@ -37,7 +37,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         changeStatusBarColor(R.color.color_fed952);
         setContentView(R.layout.activity_home);
         initView();
-        Toast.makeText(this, "sldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsff", Toast.LENGTH_SHORT).show();
         mHomeFragment = new HomeFragment();
         fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
