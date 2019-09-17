@@ -27,4 +27,6 @@ dependencies {
     implementation deps.okhttpLibary
     implementation deps.gsonLibary
     implementation deps.universalimageloaderLibary
+    api deps.easypermissionsLibary
+    api deps.zxing
 }
