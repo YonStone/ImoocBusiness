@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,7 +37,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         changeStatusBarColor(R.color.color_fed952);
         setContentView(R.layout.activity_home);
         initView();
-
+        Toast.makeText(this, "sldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsff", Toast.LENGTH_SHORT).show();
         mHomeFragment = new HomeFragment();
         fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();

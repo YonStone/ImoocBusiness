@@ -17,8 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.adapter.CourseAdapter;
@@ -31,17 +29,18 @@ import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 import com.youdu.yonstone_sdk.zxing.CaptureActivity;
 import com.youdu.yonstone_sdk.zxing.Intents;
 
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
+import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * @author: Yonstone
  * @function:
  * @date: 19/08/28
  */
-public class HomeFragment extends BaseFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class HomeFragment extends BaseFragment implements View.OnClickListener, AdapterView.OnItemClickListener, EasyPermissions.PermissionCallbacks {
     /**
      * UI
      */
@@ -56,7 +55,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
      */
     private CourseAdapter mAdapter;
     private BaseRecommendModel mRecommendData;
-    public static final int REQUEST_CODE_SCAN = 0X01;
+    private static final int RC_CAMERA = 0X01;
+    private static final int REQUEST_CODE_SCAN = 0X11;
 
 
     @Override
@@ -86,11 +86,38 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        String message = "";
+        if (requestCode == RC_CAMERA) {
+            message = "本项认证需要摄像头权限，点击确认后在新页面权限管理处，开启相机权限";
+        }
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("权限提示")
+                    .setRationale(message).build().show();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.fragment_home_layout, container, false);
         initView();
+        Toast.makeText(activity, "sldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsffsldfjksdlfkljsdfjlsdfdsff", Toast.LENGTH_SHORT).show();
         return mContentView;
     }
 
