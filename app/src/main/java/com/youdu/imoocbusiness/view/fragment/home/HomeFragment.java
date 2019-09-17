@@ -1,5 +1,8 @@
 package com.youdu.imoocbusiness.view.fragment.home;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.adapter.CourseAdapter;
@@ -20,9 +26,15 @@ import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
 import com.youdu.imoocbusiness.view.home.HomeHeaderLayout;
-
 import com.youdu.yonstone_sdk.okhttp.exception.OkHttpException;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
+import com.youdu.yonstone_sdk.zxing.CaptureActivity;
+import com.youdu.yonstone_sdk.zxing.Intents;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @author: Yonstone
@@ -44,6 +56,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
      */
     private CourseAdapter mAdapter;
     private BaseRecommendModel mRecommendData;
+    public static final int REQUEST_CODE_SCAN = 0X01;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +65,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         requestRecommendData();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_SCAN:
+                if (resultCode == Activity.RESULT_OK) {
+                    String result = data.getStringExtra(Intents.Scan.RESULT);
+                    Toast.makeText(activity, result, Toast.LENGTH_SHORT).show();
+//                    String code = data.getStringExtra("SCAN_RESULT");
+//                    if (code.contains("http") || code.contains("https")) {
+//                        Intent intent = new Intent(mContext, AdBrowserActivity.class);
+//                        intent.putExtra(AdBrowserActivity.KEY_URL, code);
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(mContext, code, Toast.LENGTH_SHORT).show();
+//                    }
+                }
+                break;
+        }
+    }
 
     @Nullable
     @Override
@@ -118,12 +152,36 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.qrcode_view:
+                checkCameraPermissions();
+                break;
+        }
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+    }
+
+    /**
+     * 检测拍摄权限
+     */
+    @AfterPermissionGranted(RC_CAMERA)
+    protected void checkCameraPermissions() {
+        String[] perms = {Manifest.permission.CAMERA};
+        if (EasyPermissions.hasPermissions(activity, perms)) {//有权限
+            startScan();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, getString(R.string.permission_camera),
+                    RC_CAMERA, perms);
+        }
+    }
+
+    private void startScan() {
+        Intent intent = new Intent(activity, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_SCAN);
     }
 }
