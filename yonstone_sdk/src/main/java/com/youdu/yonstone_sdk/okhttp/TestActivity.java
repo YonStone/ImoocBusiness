@@ -5,6 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
+import com.youdu.yonstone_sdk.okhttp.request.CommonRequest;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -12,10 +16,6 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import com.youdu.yonstone_sdk.okhttp.exception.OkHttpException;
-import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
-import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
-import com.youdu.yonstone_sdk.okhttp.request.CommonRequest;
 
 /**
  * @author YonStone
@@ -89,7 +89,7 @@ public class TestActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(OkHttpException reasonObj) {
+                    public void onFailure(Object reasonObj) {
 
                     }
                 })

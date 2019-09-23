@@ -16,5 +16,5 @@ public interface DisposeDataListener {
     /**
      * 请求失败回调事件处理
      */
-    public void onFailure(OkHttpException reasonObj);
+    public void onFailure(Object reasonObj);
 }
