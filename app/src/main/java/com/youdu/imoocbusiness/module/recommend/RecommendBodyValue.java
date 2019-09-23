@@ -1,6 +1,8 @@
 package com.youdu.imoocbusiness.module.recommend;
 
 import com.youdu.imoocbusiness.module.BaseModel;
+import com.youdu.yonstone_sdk.video.core.module.monitor.Monitor;
+import com.youdu.yonstone_sdk.video.core.module.monitor.emevent.EMEvent;
 
 import java.util.ArrayList;
 
@@ -27,15 +29,14 @@ public class RecommendBodyValue extends BaseModel {
     public ArrayList<String> url;
 
     //视频专用
-//    public String thumb;
-//    public String resource;
-//    public String resourceID;
-//    public String adid;
-//    public ArrayList<Monitor> startMonitor;
-//    public ArrayList<Monitor> middleMonitor;
-//    public ArrayList<Monitor> endMonitor;
-//    public String clickUrl;
-//    public ArrayList<Monitor> clickMonitor;
-//    public EMEvent event;
-
+    public String thumb;
+    public String resource;
+    public String resourceID;
+    public String adid;
+    public ArrayList<Monitor> startMonitor;
+    public ArrayList<Monitor> middleMonitor;
+    public ArrayList<Monitor> endMonitor;
+    public String clickUrl;
+    public ArrayList<Monitor> clickMonitor;
+    public EMEvent event;
 }
