@@ -1,7 +1,7 @@
 package com.youdu.imoocbusiness.network.http;
 
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
-
+import com.youdu.imoocbusiness.module.update.UpdateModel;
 import com.youdu.yonstone_sdk.okhttp.CommonOkHttpClient;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
@@ -25,5 +25,9 @@ public class RequestCenter {
 
     public static void requestRecommendData(DisposeDataListener listener) {
         postRequest(HttpConstants.HOME_RECOMMAND, null, listener, BaseRecommendModel.class);
+    }
+
+    public static void checkVersion(DisposeDataListener listener) {
+        postRequest(HttpConstants.CHECK_UPDATE, null, listener, UpdateModel.class);
     }
 }

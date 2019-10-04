@@ -1,5 +1,6 @@
 package com.youdu.imoocbusiness.view.fragment.home;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,16 @@ import androidx.annotation.Nullable;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.SettingActivity;
+import com.youdu.imoocbusiness.module.update.UpdateModel;
+import com.youdu.imoocbusiness.network.http.RequestCenter;
+import com.youdu.imoocbusiness.util.Util;
+import com.youdu.imoocbusiness.view.CommonDialog;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
+import com.youdu.yonstone_sdk.adutil.Toaster;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * @author: Yonstone
@@ -34,6 +42,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private TextView mShareView;
     private TextView mQrCodeView;
     private TextView mUpdateView;
+    private static final int RC_STORAGE = 0X01;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,9 +97,44 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 activity.startActivity(SettingActivity.actionView(activity));
                 break;
             case R.id.update_view:
-
+                String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE};
+                if (EasyPermissions.hasPermissions(activity, perms)) {
+                    checkVersion();
+                } else {
+                    EasyPermissions.requestPermissions(this,
+                            getString(R.string.permission_external_storage), RC_STORAGE, perms);
+                }
                 break;
         }
+    }
+
+    private void checkVersion() {
+        RequestCenter.checkVersion(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                final UpdateModel updateModel = (UpdateModel) responseObj;
+                if (Util.getVersionCode(activity) < updateModel.data.currentVersion) {
+                    //说明有新版本,开始下载
+                    CommonDialog dialog = new CommonDialog(activity, "您有新版本",
+                            getString(R.string.update_title), "安装",
+                            getString(R.string.cancel), new CommonDialog.DialogClickListener() {
+                        @Override
+                        public void onDialogClick() {
+                            Toaster.show(activity, "执行更新代码");
+                        }
+                    });
+                    dialog.show();
+                } else {
+                    Toaster.show(activity, "已是最新版本");
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                Toaster.show(activity, "请求失败");
+            }
+        });
     }
 }
 
