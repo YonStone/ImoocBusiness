@@ -1,6 +1,7 @@
 package com.youdu.imoocbusiness.view.fragment.home;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.SettingActivity;
 import com.youdu.imoocbusiness.module.update.UpdateModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
+import com.youdu.imoocbusiness.service.update.UpdateService;
 import com.youdu.imoocbusiness.util.Util;
 import com.youdu.imoocbusiness.view.CommonDialog;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
@@ -121,7 +123,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                             getString(R.string.cancel), new CommonDialog.DialogClickListener() {
                         @Override
                         public void onDialogClick() {
-                            Toaster.show(activity, "执行更新代码");
+                            Intent intent = new Intent(getActivity(), UpdateService.class);
+                            getActivity().startService(intent);
                         }
                     });
                     dialog.show();
