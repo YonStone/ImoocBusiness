@@ -1,5 +1,6 @@
 package com.youdu.imoocbusiness.activity.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -15,13 +16,16 @@ import com.youdu.imoocbusiness.util.StatusBarUtil;
  * @date: 19/08/28
  */
 public class BaseActivity extends AppCompatActivity {
+    protected Activity activity;
     public String TAG;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         reverseStatusColor();
     }
+
     /**
      * 隐藏状态栏
      */

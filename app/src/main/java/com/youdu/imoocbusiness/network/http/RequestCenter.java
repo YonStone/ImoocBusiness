@@ -2,6 +2,7 @@ package com.youdu.imoocbusiness.network.http;
 
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.module.update.UpdateModel;
+import com.youdu.imoocbusiness.module.user.User;
 import com.youdu.yonstone_sdk.okhttp.CommonOkHttpClient;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
@@ -29,5 +30,20 @@ public class RequestCenter {
 
     public static void checkVersion(DisposeDataListener listener) {
         postRequest(HttpConstants.CHECK_UPDATE, null, listener, UpdateModel.class);
+    }
+
+    /**
+     * 用户登陆请求
+     *
+     * @param listener
+     * @param userName
+     * @param passwd
+     */
+    public static void login(String userName, String passwd, DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        params.put("mb", userName);
+        params.put("pwd", passwd);
+        RequestCenter.postRequest(HttpConstants.LOGIN, params, listener, User.class);
     }
 }

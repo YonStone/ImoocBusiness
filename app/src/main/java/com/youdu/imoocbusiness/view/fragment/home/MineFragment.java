@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.youdu.imoocbusiness.R;
+import com.youdu.imoocbusiness.activity.LoginActivity;
 import com.youdu.imoocbusiness.activity.SettingActivity;
+import com.youdu.imoocbusiness.manager.UserManager;
 import com.youdu.imoocbusiness.module.update.UpdateModel;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.service.update.UpdateService;
@@ -91,7 +93,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.login_layout:
             case R.id.login_view:
-                //未登陆，则跳轉到登陸页面
+                if (!UserManager.getInstance().hasLogined()) {
+                    toLogin();
+                }
                 break;
             case R.id.my_qrcode_view:
                 break;
@@ -109,6 +113,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    private void toLogin() {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
     }
 
     private void checkVersion() {

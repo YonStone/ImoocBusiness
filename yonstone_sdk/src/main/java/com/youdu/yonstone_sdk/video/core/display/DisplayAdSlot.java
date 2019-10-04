@@ -3,9 +3,11 @@ package com.youdu.yonstone_sdk.video.core.display;
 import android.view.ViewGroup;
 
 import com.youdu.yonstone_sdk.constant.SDKConstant;
+import com.youdu.yonstone_sdk.okhttp.CommonOkHttpClient;
 import com.youdu.yonstone_sdk.okhttp.HttpConstant;
-import com.youdu.yonstone_sdk.okhttp.RequestCenter;
+import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataHandle;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
+import com.youdu.yonstone_sdk.okhttp.request.CommonRequest;
 import com.youdu.yonstone_sdk.video.core.BaseRenderer;
 import com.youdu.yonstone_sdk.video.core.module.AdInstance;
 
@@ -30,7 +32,8 @@ public class DisplayAdSlot implements DisposeDataListener, ImageAdRenderer.Image
 
     //发送开机图广告请求
     private void load() {
-        RequestCenter.sendImageAdRequest(HttpConstant.DISPLAY_AD_URL, this);
+        CommonOkHttpClient.sendRequest(CommonRequest.createPostRequest(HttpConstant.DISPLAY_AD_URL, null),
+                new DisposeDataHandle(this, AdInstance.class));
     }
 
     public void setContextListener(DisplayConextListener listener) {
