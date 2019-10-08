@@ -1,10 +1,13 @@
 package com.youdu.imoocbusiness.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
@@ -22,6 +25,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mUserNameView;
     private EditText mPasswordView;
     private TextView mLoginView;
+    public static final String LOGIN_ACTION = "login_action";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 User user = (User) responseObj;
                 UserManager.getInstance().setUser(user);//保存当前用户单例对象
 //                connectToSever();
-//                sendLoginBroadcast();
+                sendLoginBroadcast();
                 /**
                  * 还应该将用户信息存入数据库，这样可以保证用户打开应用后总是登陆状态
                  * 只有用户手动退出登陆时候，将用户数据从数据库中删除。
@@ -85,7 +89,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                    intent.putExtra("pushMessage", mPushMessage);
 //                    startActivity(intent);
 //                }
-//                finish();//销毁当前登陆页面
+                finish();//销毁当前登陆页面
             }
 
             @Override
@@ -94,5 +98,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 DialogManager.getInstnce().dismissProgressDialog();
             }
         });
+    }
+
+    private void sendLoginBroadcast() {
+        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOGIN_ACTION));
     }
 }

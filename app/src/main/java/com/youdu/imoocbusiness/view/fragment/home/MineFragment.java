@@ -1,7 +1,10 @@
 package com.youdu.imoocbusiness.view.fragment.home;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +14,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.LoginActivity;
 import com.youdu.imoocbusiness.activity.SettingActivity;
 import com.youdu.imoocbusiness.manager.UserManager;
 import com.youdu.imoocbusiness.module.update.UpdateModel;
+import com.youdu.imoocbusiness.module.user.User;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.service.update.UpdateService;
 import com.youdu.imoocbusiness.util.Util;
 import com.youdu.imoocbusiness.view.CommonDialog;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 
@@ -48,9 +54,18 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private TextView mUpdateView;
     private static final int RC_STORAGE = 0X01;
 
+    private LoginBroadcastReceiver mReceiver = new LoginBroadcastReceiver();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        registerBroadcast();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterBroadcast();
     }
 
     @Nullable
@@ -115,6 +130,15 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    private void registerBroadcast() {
+        IntentFilter filter = new IntentFilter(LoginActivity.LOGIN_ACTION);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mReceiver, filter);
+    }
+
+    private void unregisterBroadcast() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mReceiver);
+    }
+
     private void toLogin() {
         Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
@@ -147,6 +171,26 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 Toaster.show(activity, "请求失败");
             }
         });
+    }
+
+    /**
+     * 自定义广播，登录后更新UI
+     */
+    private class LoginBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            User user = UserManager.getInstance().getUser();
+            if (user != null) {
+                if (mLoginedLayout.getVisibility() == View.GONE) {
+                    mLoginLayout.setVisibility(View.GONE);
+                    mLoginedLayout.setVisibility(View.VISIBLE);
+                    mUserNameView.setText(user.data.name);
+                    mTickView.setText(user.data.tick);
+                    ImageLoaderManager.getInstance(activity)
+                            .displayImage(mPhotoView, user.data.photoUrl);
+                }
+            }
+        }
     }
 }
 
