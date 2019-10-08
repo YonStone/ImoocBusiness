@@ -7,16 +7,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
 import com.youdu.imoocbusiness.adapter.PhotoPagerAdapter;
-import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.adutil.Utils;
 
 import java.util.ArrayList;
+
+import youdu.com.ext_share_login_umeng.ext.ShareDialog;
+import youdu.com.ext_share_login_umeng.ext.SharePlatform;
 
 public class PhotoViewActivity extends BaseActivity implements View.OnClickListener {
     private static final String PHOTO_LIST = "com.youdu.imoocbusiness.activity.photo_list";
@@ -85,7 +87,11 @@ public class PhotoViewActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.share_view:
-                Toaster.show(activity, "点击分享");
+//                SharePlatform sharePlatform = new SharePlatform(activity, "标题", "内容",
+//                        "https://www.baidu.com", mPhotoLists.get(mCurrentPos));
+//                sharePlatform.shareToPlatform(SHARE_MEDIA.QZONE);
+                ShareDialog dialog = new ShareDialog(activity);
+                dialog.show();
         }
     }
 }

@@ -24,10 +24,9 @@ public class ImoocApplication extends Application {
     private void initUMeng() {
         UMConfigure.init(this, "5d9bfd990cafb2f3b80000e6"
                 , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
-//        UMConfigure.init(this,BuildConfig.UMENG_KEY,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
 //        PlatformConfig.setWeixin(BuildConfig.WX_KEY, BuildConfig.WX_SECRET);
 //        PlatformConfig.setSinaWeibo(BuildConfig.SINA_KEY, BuildConfig.SINA_SECRET, "http://www.limingtang.cn");
-//        PlatformConfig.setQQZone(BuildConfig.QQ_KEY, BuildConfig.QQ_SECRET);
+        PlatformConfig.setQQZone("1109934148", "KEY90YIPGf7CF4ehGV3");
     }
 
     private void initAdSDK() {

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ext_share_login_umeng</string>
+    <string name="cancel">取消</string>
+    <string name="share_qzone">qq空间</string>
+    <string name="share_qq">qq</string>
+    <string name="share_weixin_moment">朋友圈</string>
+    <string name="share_weixin">微信</string>
 </resources>
