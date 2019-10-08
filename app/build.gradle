@@ -28,5 +28,5 @@ dependencies {
 
     implementation deps.circleimageview
     implementation deps.systembartint
-
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }

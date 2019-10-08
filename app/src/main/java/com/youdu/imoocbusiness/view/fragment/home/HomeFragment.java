@@ -19,8 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.youdu.imoocbusiness.R;
+import com.youdu.imoocbusiness.activity.PhotoViewActivity;
 import com.youdu.imoocbusiness.adapter.CourseAdapter;
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
+import com.youdu.imoocbusiness.module.recommend.RecommendBodyValue;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.view.fragment.BaseFragment;
 import com.youdu.imoocbusiness.view.home.HomeHeaderLayout;
@@ -190,7 +192,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        RecommendBodyValue value = (RecommendBodyValue) mAdapter.getItem(i - mListView.getHeaderViewsCount());
+        if (value.type != 0) {
+            startActivity(PhotoViewActivity.actionView(activity, value.url));
+        }
     }
 
     /**

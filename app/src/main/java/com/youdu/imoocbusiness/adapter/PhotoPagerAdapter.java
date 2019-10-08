@@ -9,9 +9,11 @@ import android.widget.ImageView.ScaleType;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-import java.util.ArrayList;
-
+import com.github.chrisbanes.photoview.PhotoView;
 import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
+import com.youdu.yonstone_sdk.adutil.Toaster;
+
+import java.util.ArrayList;
 
 
 /**
@@ -49,13 +51,14 @@ public class PhotoPagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View v) {
                     //TODO:
+                    Toaster.show(mContext, "跳到课程详情界面");
 //                    Intent intent = new Intent(mContext,
 //                            CourseDetailActivity.class);
 //                    mContext.startActivity(intent);
                 }
             });
         } else {
-            photoView = new ImageView(mContext);
+            photoView = new PhotoView(mContext);
         }
         mLoader.displayImage(photoView, mData.get(position));
         container.addView(photoView, LayoutParams.MATCH_PARENT,

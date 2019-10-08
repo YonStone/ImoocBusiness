@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.gson.Gson;
 import com.youdu.imoocbusiness.R;
+import com.youdu.imoocbusiness.activity.PhotoViewActivity;
 import com.youdu.imoocbusiness.module.recommend.RecommendBodyValue;
 import com.youdu.imoocbusiness.util.Util;
 import com.youdu.yonstone_sdk.activity.AdBrowserActivity;
@@ -194,9 +195,7 @@ public class CourseAdapter extends BaseAdapter {
                 mViewHolder.mProductLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent = new Intent(mContext, PhotoViewActivity.class);
-//                        intent.putStringArrayListExtra(PhotoViewActivity.PHOTO_LIST, value.url);
-//                        mContext.startActivity(intent);
+                        mContext.startActivity(PhotoViewActivity.actionView(mContext, value.url));
                     }
                 });
                 mViewHolder.mProductLayout.removeAllViews();
