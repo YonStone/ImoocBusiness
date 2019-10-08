@@ -33,5 +33,6 @@ deps.circleimageview = 'de.hdodenhof:circleimageview:2.1.0'
 deps.systembartint = 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 //扫码
 deps.zxing = "com.google.zxing:core:3.3.3"
+deps.photoView = "com.github.chrisbanes:PhotoView:2.3.0"
 
 ext.deps = deps

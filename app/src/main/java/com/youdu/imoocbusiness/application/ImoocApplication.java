@@ -2,6 +2,9 @@ package com.youdu.imoocbusiness.application;
 
 import android.app.Application;
 
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.youdu.imoocbusiness.BuildConfig;
 import com.youdu.yonstone_sdk.video.core.AdSDKManager;
 
 /**
@@ -15,6 +18,16 @@ public class ImoocApplication extends Application {
         super.onCreate();
         mApplication = this;
         initAdSDK();
+        initUMeng();
+    }
+
+    private void initUMeng() {
+        UMConfigure.init(this, "5d9bfd990cafb2f3b80000e6"
+                , "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+//        UMConfigure.init(this,BuildConfig.UMENG_KEY,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+//        PlatformConfig.setWeixin(BuildConfig.WX_KEY, BuildConfig.WX_SECRET);
+//        PlatformConfig.setSinaWeibo(BuildConfig.SINA_KEY, BuildConfig.SINA_SECRET, "http://www.limingtang.cn");
+//        PlatformConfig.setQQZone(BuildConfig.QQ_KEY, BuildConfig.QQ_SECRET);
     }
 
     private void initAdSDK() {
