@@ -132,11 +132,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     private void registerBroadcast() {
         IntentFilter filter = new IntentFilter(LoginActivity.LOGIN_ACTION);
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mReceiver, filter);
+        LocalBroadcastManager.getInstance(activity).registerReceiver(mReceiver, filter);
     }
 
     private void unregisterBroadcast() {
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mReceiver);
+        LocalBroadcastManager.getInstance(activity).unregisterReceiver(mReceiver);
     }
 
     private void toLogin() {
