@@ -10,8 +10,8 @@ import android.widget.ImageView.ScaleType;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.youdu.imoocbusiness.activity.CourseDetailActivity;
 import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
-import com.youdu.yonstone_sdk.adutil.Toaster;
 
 import java.util.ArrayList;
 
@@ -50,11 +50,7 @@ public class PhotoPagerAdapter extends PagerAdapter {
             photoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO:
-                    Toaster.show(mContext, "跳到课程详情界面");
-//                    Intent intent = new Intent(mContext,
-//                            CourseDetailActivity.class);
-//                    mContext.startActivity(intent);
+                    mContext.startActivity(CourseDetailActivity.actionView(mContext));
                 }
             });
         } else {

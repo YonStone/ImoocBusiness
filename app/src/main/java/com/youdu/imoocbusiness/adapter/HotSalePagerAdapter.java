@@ -10,11 +10,11 @@ import android.widget.TextView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.youdu.imoocbusiness.R;
+import com.youdu.imoocbusiness.activity.CourseDetailActivity;
 import com.youdu.imoocbusiness.module.recommend.RecommendBodyValue;
+import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 import java.util.ArrayList;
-
-import com.youdu.yonstone_sdk.adutil.ImageLoaderManager;
 
 /**
  * @author YonStone
@@ -67,10 +67,7 @@ public class HotSalePagerAdapter extends PagerAdapter {
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
-//                Intent intent = new Intent(mContext, CourseDetailActivity.class);
-//                intent.putExtra(CourseDetailActivity.COURSE_ID, value.adid);
-//                mContext.startActivity(intent);
+                mContext.startActivity(CourseDetailActivity.actionView(mContext, value.adid));
             }
         });
 

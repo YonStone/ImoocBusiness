@@ -1,5 +1,6 @@
 package com.youdu.imoocbusiness.network.http;
 
+import com.youdu.imoocbusiness.module.course.BaseCourseModel;
 import com.youdu.imoocbusiness.module.recommend.BaseRecommendModel;
 import com.youdu.imoocbusiness.module.update.UpdateModel;
 import com.youdu.imoocbusiness.module.user.User;
@@ -45,5 +46,16 @@ public class RequestCenter {
         params.put("mb", userName);
         params.put("pwd", passwd);
         RequestCenter.postRequest(HttpConstants.LOGIN, params, listener, User.class);
+    }
+
+    /**
+     * 请求课程详情
+     *
+     * @param listener
+     */
+    public static void requestCourseDetail(String courseId, DisposeDataListener listener) {
+        RequestParams params = new RequestParams();
+        params.put("courseId", courseId);
+        RequestCenter.postRequest(HttpConstants.COURSE_DETAIL, params, listener, BaseCourseModel.class);
     }
 }
