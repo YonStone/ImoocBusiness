@@ -1,1 +1,1 @@
-include ':app', ':yonstone_sdk', ':ext_share_login_umeng', "library:banner"
+include ':app', ':yonstone_sdk', ':ext_share_login_umeng',":ext_library:banner"

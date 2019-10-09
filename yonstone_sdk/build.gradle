@@ -24,9 +24,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.appcompat
 
-    implementation deps.okhttpLibary
-    implementation deps.gsonLibary
     implementation deps.universalimageloaderLibary
+    api deps.okhttpLibary
+    api deps.gsonLibary
     api deps.easypermissionsLibary
     api deps.zxing
 }

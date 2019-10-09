@@ -24,7 +24,7 @@ dependencies {
     implementation deps.support.appcompat
     implementation deps.support.constraintlayout
     implementation project(path: ':yonstone_sdk')
-    implementation project(path: ':library:banner')
+    implementation project(path: ':ext_library:banner')
     implementation project(path: ':ext_share_login_umeng')
 
     implementation deps.circleimageview
