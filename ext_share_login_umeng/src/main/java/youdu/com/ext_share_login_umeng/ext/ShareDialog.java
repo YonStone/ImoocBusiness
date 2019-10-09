@@ -90,10 +90,13 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
             this.dismiss();
         } else if (view.getId() == R.id.moment_layout) {
             shareToPlatform(SHARE_MEDIA.WEIXIN_CIRCLE);
+            this.dismiss();
         } else if (view.getId() == R.id.qq_layout) {
             shareToPlatform(SHARE_MEDIA.QQ);
+            this.dismiss();
         } else if (view.getId() == R.id.qzone_layout) {
             shareToPlatform(SHARE_MEDIA.QZONE);
+            this.dismiss();
         }
     }
 
