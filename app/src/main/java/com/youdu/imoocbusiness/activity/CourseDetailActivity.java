@@ -22,6 +22,8 @@ import com.youdu.imoocbusiness.module.course.CourseCommentValue;
 import com.youdu.imoocbusiness.module.user.User;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.imoocbusiness.util.Util;
+import com.youdu.imoocbusiness.view.course.CourseDetailFooterView;
+import com.youdu.imoocbusiness.view.course.CourseDetailHeaderView;
 import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
 
@@ -39,8 +41,8 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
     private ImageView mJianPanView;
     private EditText mInputEditView;
     private TextView mSendView;
-    //    private CourseDetailHeaderView headerView;
-//    private CourseDetailFooterView footerView;
+    private CourseDetailHeaderView headerView;
+    private CourseDetailFooterView footerView;
     private CourseCommentAdapter mAdapter;
     /**
      * Data
@@ -63,6 +65,15 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
+        initData();
+        intiView();
+        requestDetail();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
         initData();
         intiView();
         requestDetail();
@@ -114,7 +125,16 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
         mListView.setVisibility(View.VISIBLE);
         mAdapter = new CourseCommentAdapter(this, mData.data.body);
         mListView.setAdapter(mAdapter);
-
+        if (headerView != null) {
+            mListView.removeHeaderView(headerView);
+        }
+        headerView = new CourseDetailHeaderView(activity, mData.data.head);
+        mListView.addHeaderView(headerView);
+        if (footerView != null) {
+            mListView.removeFooterView(footerView);
+        }
+        footerView = new CourseDetailFooterView(activity, mData.data.footer);
+        mListView.addFooterView(footerView);
         mBottomLayout.setVisibility(View.VISIBLE);
     }
 
@@ -162,20 +182,23 @@ public class CourseDetailActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (UserManager.getInstance().hasLogined()) {
-            CourseCommentValue value = (CourseCommentValue) mAdapter.getItem(
-                    i - mListView.getHeaderViewsCount());
-            if (value.userId.equals(UserManager.getInstance().getUser().data.userId)) {
-                intoEmptyState();
-                Toaster.show(activity, "不能评论自己");
+        int cursor = i - mListView.getHeaderViewsCount();
+        //头尾不响应onItemClick点击
+        if (cursor >= 0 && cursor < mAdapter.getCommentCount()) {
+            if (UserManager.getInstance().hasLogined()) {
+                CourseCommentValue value = (CourseCommentValue) mAdapter.getItem(cursor);
+                if (value.userId.equals(UserManager.getInstance().getUser().data.userId)) {
+                    intoEmptyState();
+                    Toaster.show(activity, "不能评论自己");
+                } else {
+                    //不是自己的评论，可以回复
+                    tempHint = getString(R.string.comment_hint_head).concat(value.name).
+                            concat(getString(R.string.comment_hint_footer));
+                    intoEditState(tempHint);
+                }
             } else {
-                //不是自己的评论，可以回复
-                tempHint = getString(R.string.comment_hint_head).concat(value.name).
-                        concat(getString(R.string.comment_hint_footer));
-                intoEditState(tempHint);
+                startActivity(new Intent(activity, LoginActivity.class));
             }
-        } else {
-            startActivity(new Intent(activity, LoginActivity.class));
         }
     }
 
