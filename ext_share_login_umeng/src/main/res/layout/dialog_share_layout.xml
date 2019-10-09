@@ -112,7 +112,7 @@
         android:layout_height="0.5dp"
         android:layout_below="@id/scroll_view"
         android:layout_marginTop="20dp"
-        android:background="@color/black" />
+        android:background="#cccccc" />
 
     <TextView
         android:id="@+id/cancel_view"
@@ -122,6 +122,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="8dp"
+        android:background="#cdcdcd"
         android:gravity="center"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"

@@ -9,16 +9,16 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
 import com.youdu.imoocbusiness.adapter.PhotoPagerAdapter;
+import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.adutil.Utils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import youdu.com.ext_share_login_umeng.ext.ShareDialog;
-import youdu.com.ext_share_login_umeng.ext.SharePlatform;
 
 public class PhotoViewActivity extends BaseActivity implements View.OnClickListener {
     private static final String PHOTO_LIST = "com.youdu.imoocbusiness.activity.photo_list";
@@ -35,6 +35,7 @@ public class PhotoViewActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<String> mPhotoLists; //图片地址
     private int mLength;
     private int mCurrentPos; //用于分享
+    private long t1;
 
     public static Intent actionView(Context context, ArrayList<String> photoList) {
         Intent intent = new Intent(context, PhotoViewActivity.class);
@@ -87,11 +88,26 @@ public class PhotoViewActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.share_view:
-//                SharePlatform sharePlatform = new SharePlatform(activity, "标题", "内容",
-//                        "https://www.baidu.com", mPhotoLists.get(mCurrentPos));
-//                sharePlatform.shareToPlatform(SHARE_MEDIA.QZONE);
-                ShareDialog dialog = new ShareDialog(activity);
-                dialog.show();
+                if (t1 == 0) {
+                    shareView();
+                    t1 = (new Date()).getTime();
+                } else {
+                    long curTime = (new Date()).getTime();
+                    System.out.println("两次单击间隔时间：" + (curTime - t1));
+                    //间隔2秒允许点击，可以根据需要修改间隔时间
+                    if (curTime - t1 > 2 * 1000) {
+                        t1 = curTime;
+                        shareView();
+                    } else {
+                        Toaster.show(activity, "请勿频繁点击！");
+                    }
+                }
         }
+    }
+
+    private void shareView() {
+        ShareDialog dialog = new ShareDialog(activity, "标题", "内容",
+                "https://www.baidu.com", mPhotoLists.get(mCurrentPos));
+        dialog.show();
     }
 }
