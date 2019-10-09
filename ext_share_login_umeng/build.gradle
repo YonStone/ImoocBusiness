@@ -11,9 +11,25 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "UMENG_KEY", '"5d9bfd990cafb2f3b80000e6"')
+            buildConfigField("String", "WX_KEY", '"wx9529c2408f3e0233"')
+            buildConfigField("String", "WX_SECRET", '"d4624c36b6795d1d99dcf0547af5443d"')
+            buildConfigField("String", "QQ_KEY", '"1109934148"')
+            buildConfigField("String", "QQ_SECRET", '"KEY90YIPGf7CF4ehGV3"')
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "UMENG_KEY", '"5d9bfd990cafb2f3b80000e6"')
+            buildConfigField("String", "WX_KEY", '"wx9529c2408f3e0233"')
+            buildConfigField("String", "WX_SECRET", '"d4624c36b6795d1d99dcf0547af5443d"')
+            buildConfigField("String", "QQ_KEY", '"1109934148"')
+            buildConfigField("String", "QQ_SECRET", '"KEY90YIPGf7CF4ehGV3"')
         }
     }
 

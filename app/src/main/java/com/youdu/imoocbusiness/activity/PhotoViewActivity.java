@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.umeng.socialize.UMShareAPI;
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
 import com.youdu.imoocbusiness.adapter.PhotoPagerAdapter;
@@ -49,6 +50,12 @@ public class PhotoViewActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_photo_view);
         initData();
         initView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     private void initData() {

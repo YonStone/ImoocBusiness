@@ -46,6 +46,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!--tencent+QQKEY拼接，初始化友盟组件的时候， PlatformConfig.setQQZone方法会同时设置QQ和QZone-->
                 <data android:scheme="tencent1109934148" />
             </intent-filter>
         </activity>
