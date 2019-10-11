@@ -3,6 +3,7 @@ ext.deps = [:]
 def app_version = [:]
 app_version.versionCode = 1
 app_version.versionName = "1.0"
+app_version.id = "com.youdu.imoocbusiness"
 ext.app_version = app_version
 
 //build version

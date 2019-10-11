@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.youdu.yonstone_sdk.video.core.AdSDKManager;
 
+import cn.jpush.android.api.JPushInterface;
 import youdu.com.ext_share_login_umeng.ext.ShareSDKManager;
 
 /**
@@ -18,6 +19,12 @@ public class ImoocApplication extends Application {
         mApplication = this;
         initAdSDK();
         initUMeng();
+        initJPush();
+    }
+
+    private void initJPush() {
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     private void initUMeng() {

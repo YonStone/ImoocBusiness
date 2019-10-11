@@ -4,7 +4,7 @@ android {
     compileSdkVersion build_versions.targetSdk
     buildToolsVersion build_versions.buildTools
     defaultConfig {
-        applicationId "com.youdu.imoocbusiness"
+        applicationId app_version.id
         minSdkVersion build_versions.minSdk
         targetSdkVersion build_versions.targetSdk
         versionCode app_version.versionCode
@@ -12,9 +12,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
+            addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
+            addManifestPlaceholders([JPUSH_APPKEY: "a39865df2fbf069e89ee2a1c"])
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
+            addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
+            addManifestPlaceholders([JPUSH_APPKEY: "a39865df2fbf069e89ee2a1c"])
         }
     }
 }
@@ -30,4 +40,7 @@ dependencies {
     implementation deps.circleimageview
     implementation deps.systembartint
     implementation deps.photoView
+
+    implementation 'cn.jiguang.sdk:jpush:3.3.6'  // 此处以JPush 3.3.6 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.1.6'  // 此处以JCore 2.1.6 版本为例。
 }
