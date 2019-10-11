@@ -16,15 +16,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
-            addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
-            addManifestPlaceholders([JPUSH_APPKEY: "a39865df2fbf069e89ee2a1c"])
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
-            addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
-            addManifestPlaceholders([JPUSH_APPKEY: "a39865df2fbf069e89ee2a1c"])
         }
     }
 }
