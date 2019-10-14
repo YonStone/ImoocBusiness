@@ -129,7 +129,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
         }
     }
-
+    //注册指定类型的广播接收器
     private void registerBroadcast() {
         IntentFilter filter = new IntentFilter(LoginActivity.LOGIN_ACTION);
         LocalBroadcastManager.getInstance(activity).registerReceiver(mReceiver, filter);

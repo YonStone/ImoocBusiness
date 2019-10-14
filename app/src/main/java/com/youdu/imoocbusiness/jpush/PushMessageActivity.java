@@ -1,5 +1,6 @@
 package com.youdu.imoocbusiness.jpush;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,8 +8,8 @@ import android.widget.TextView;
 
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
-import com.youdu.imoocbusiness.module.PushMessage;
 import com.youdu.yonstone_sdk.activity.AdBrowserActivity;
+import com.youdu.yonstone_sdk.constant.ExtraConstant;
 
 /**
  * Created by qndroid on 16/11/19.
@@ -30,6 +31,12 @@ public class PushMessageActivity extends BaseActivity {
      */
     private PushMessage mPushMessage;
 
+    public static Intent actionView(Context context, PushMessage pushMessage) {
+        Intent intent = new Intent(context, PushMessageActivity.class);
+        intent.putExtra(ExtraConstant.EXTRA_PUSH_MESSAGE, pushMessage);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +47,7 @@ public class PushMessageActivity extends BaseActivity {
 
     //初始化推送过来的数据
     private void initData() {
-        Intent intent = getIntent();
-        mPushMessage = (PushMessage) intent.getSerializableExtra("pushMessage");
+        mPushMessage = (PushMessage) getIntent().getSerializableExtra(ExtraConstant.EXTRA_PUSH_MESSAGE);
     }
 
     private void initView() {
@@ -59,8 +65,7 @@ public class PushMessageActivity extends BaseActivity {
     }
 
     private void gotoWebView() {
-        Intent intent = new Intent(this, AdBrowserActivity.class);
-        intent.putExtra(AdBrowserActivity.KEY_URL, mPushMessage.messageUrl);
+        Intent intent = new Intent(AdBrowserActivity.actionView(this, mPushMessage.messageUrl));
         startActivity(intent);
         finish();
     }

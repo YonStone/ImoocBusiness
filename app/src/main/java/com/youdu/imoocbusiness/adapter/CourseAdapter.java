@@ -1,7 +1,6 @@
 package com.youdu.imoocbusiness.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,10 +114,7 @@ public class CourseAdapter extends BaseAdapter {
                         }
 
                         @Override
-                        public void onClickVideo(String url) {
-                            Intent intent = new Intent(mContext, AdBrowserActivity.class);
-                            intent.putExtra(AdBrowserActivity.KEY_URL, url);
-                            mContext.startActivity(intent);
+                        public void onClickVideo(String url) { mContext.startActivity(AdBrowserActivity.actionView(mContext, url));
                         }
                     });
                     break;

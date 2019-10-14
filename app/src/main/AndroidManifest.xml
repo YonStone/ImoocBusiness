@@ -57,6 +57,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        |
+        <activity
+            android:name=".jpush.PushMessageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <!--JPush required,注意高版本的极光推送不能这么简单的配置，等完善skeleton后单独分包集成-->
         <receiver
             android:name=".jpush.JPushReceiver"

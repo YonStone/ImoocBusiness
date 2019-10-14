@@ -104,8 +104,7 @@ public class VideoAdContext implements VideoAdSlot.AdSDKSlotListener {
         if (mListener != null) {
             mListener.onClickVideo(url);
         } else {
-            Intent intent = new Intent(mParentView.getContext(), AdBrowserActivity.class);
-            intent.putExtra(AdBrowserActivity.KEY_URL, url);
+            Intent intent = AdBrowserActivity.actionView(mParentView.getContext(), url);
             mParentView.getContext().startActivity(intent);
         }
     }

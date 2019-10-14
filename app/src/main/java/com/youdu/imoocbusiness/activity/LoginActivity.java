@@ -1,5 +1,6 @@
 package com.youdu.imoocbusiness.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,14 +10,17 @@ import android.widget.TextView;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.youdu.yonstone_sdk.constant.ExtraConstant;
 import com.youdu.imoocbusiness.R;
 import com.youdu.imoocbusiness.activity.base.BaseActivity;
 import com.youdu.imoocbusiness.manager.DialogManager;
 import com.youdu.imoocbusiness.manager.UserManager;
+import com.youdu.imoocbusiness.jpush.PushMessage;
 import com.youdu.imoocbusiness.module.user.User;
 import com.youdu.imoocbusiness.network.http.RequestCenter;
 import com.youdu.yonstone_sdk.adutil.Toaster;
 import com.youdu.yonstone_sdk.okhttp.listener.DisposeDataListener;
+
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -26,12 +30,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mPasswordView;
     private TextView mLoginView;
     public static final String LOGIN_ACTION = "login_action";
+    /**
+     * data
+     */
+    private PushMessage mPushMessage; // 推送过来的消息
+    private boolean fromPush; // 是否从推送到此页面
+
+    public static Intent actionView(Context context, PushMessage pushMessage) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra(ExtraConstant.EXTRA_PUSH_MESSAGE, pushMessage);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initData();
         initView();
+    }
+
+    private void initData() {
+        Intent intent = getIntent();
+        mPushMessage = (PushMessage) intent.getSerializableExtra(ExtraConstant.EXTRA_PUSH_MESSAGE);
     }
 
     private void initView() {
@@ -81,14 +102,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                  * 还应该将用户信息存入数据库，这样可以保证用户打开应用后总是登陆状态
                  * 只有用户手动退出登陆时候，将用户数据从数据库中删除。
                  */
-//                insertUserInfoIntoDB();
-//
-//                if (fromPush) {
-//                    Intent intent = new Intent(LoginActivity.this, PushMessageActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.putExtra("pushMessage", mPushMessage);
-//                    startActivity(intent);
-//                }
+                insertUserInfoIntoDB();
+
+                if (mPushMessage != null) { //从推送过来的
+                    Intent intent = new Intent(LoginActivity.actionView(activity, mPushMessage));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
                 finish();//销毁当前登陆页面
             }
 
@@ -100,6 +120,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
+    /**
+     * 用户信息存入数据库，以使让用户一打开应用就是一个登陆过的状态
+     */
+    private void insertUserInfoIntoDB() {
+
+    }
+
+    //发送孩子指定类型广播
     private void sendLoginBroadcast() {
         LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOGIN_ACTION));
     }

@@ -29,7 +29,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the {@link Scan#ACTION} Intent.
+     * ExtraConstant related to the {@link Scan#ACTION} Intent.
      */
     public static final class Scan {
         /**
@@ -180,7 +180,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the scan history and retrieving history items.
+     * ExtraConstant related to the scan history and retrieving history items.
      */
     public static final class History {
 
@@ -191,7 +191,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the {@link Encode#ACTION} Intent.
+     * ExtraConstant related to the {@link Encode#ACTION} Intent.
      */
     public static final class Encode {
         /**
@@ -232,7 +232,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the {@link SearchBookContents#ACTION} Intent.
+     * ExtraConstant related to the {@link SearchBookContents#ACTION} Intent.
      */
     public static final class SearchBookContents {
         /**
@@ -255,7 +255,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the {@link WifiConnect#ACTION} Intent.
+     * ExtraConstant related to the {@link WifiConnect#ACTION} Intent.
      */
     public static final class WifiConnect {
         /**
@@ -283,7 +283,7 @@ public final class Intents {
     }
 
     /**
-     * Constants related to the {@link Share#ACTION} Intent.
+     * ExtraConstant related to the {@link Share#ACTION} Intent.
      */
     public static final class Share {
         /**

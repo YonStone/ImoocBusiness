@@ -228,8 +228,7 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
         } else {
             //走默认样式
             if (mVideoView.isFrameHidden() && !TextUtils.isEmpty(desationUrl)) {
-                Intent intent = new Intent(mContext, AdBrowserActivity.class);
-                intent.putExtra(AdBrowserActivity.KEY_URL, mXAdInstance.clickUrl);
+                Intent intent = AdBrowserActivity.actionView(mContext, mXAdInstance.clickUrl);
                 mContext.startActivity(intent);
                 try {
                     ReportManager.pauseVideoReport(mXAdInstance.clickMonitor, mVideoView.getCurrentPosition()
