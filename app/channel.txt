@@ -1,0 +1,58 @@
+lmt # 立明堂
+baiee # 百易官网
+gw # 百易宝官网
+wx_gzh # 微信公众号
+wx_gzh_menu #微信公众号菜单栏点击下载
+wx_gzh_keyword_reply_link #微信公众号关键词回复链接下载
+wx_gzh_keyword_reply #微信群关键词回复下载
+we_media #自媒体平台（今日头条、博客、论坛等）
+#s1 # 用于SEO推广统计新浪
+#s2 # 用于SEO推广统计资讯
+s3 # 用于SEO推广统计外围
+#duanxin # 短信
+wenzhangzixun # 文章资讯
+#meituan # 美团
+samsungapps #三星
+#anzhi #安智
+xiaomi # 小米
+wandoujia #豌豆荚
+yingyongbao #应用宝
+360app #360市场
+baidu #百度助手
+ppstore #PP助手
+sougou #搜狗
+91app #91助手
+huawei #华为
+#ningmeng #柠檬助手
+#woshangdian #沃商店
+oppo
+vivo
+#googleplay #谷歌商店
+#jinshan #金山
+#yunos #云OS
+#liqu #历趣市场
+#taobao #淘宝助手
+#2345store #2345市场
+#appchina #APP CHINA应用汇
+#tiantianstore #天天应用市场
+#kuwan #酷玩市场
+#zhouyi #卓易
+#yisou #宜搜
+#xiaotiancai #小天才市场
+#store #应用商店
+#main #应用超市
+#htc
+#baifenwang #百分网
+#readboy #读书郎商店
+#amazon
+#huohou #火猴
+#kuan #酷按
+meizu #魅族
+#MM #MM商场
+lestore #乐商店
+#jinli #金立
+#tianyi #天翼空间
+#chuizi #锤子商店
+#zhongxing #中兴商店
+#coolpad #酷派商店
+#leshi #乐视商店
