@@ -24,8 +24,11 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            //给debug环境的包名添加后缀,因暂在开发平台只有创建一个应用,包名和key等值没有差异,所以先注释掉
+//            applicationIdSuffix ".test"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
+            resValue("string", "app_name", "@string/app_name_debug")
             addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
             addManifestPlaceholders([JPUSH_APPKEY: "4bf9ba5e3aadcfe3798aec56"])
             addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
@@ -34,6 +37,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
+            resValue("string", "app_name", "@string/app_name_release")
             addManifestPlaceholders([JPUSH_PKGNAME: "${app_version.id}"])
             addManifestPlaceholders([JPUSH_APPKEY: "4bf9ba5e3aadcfe3798aec56"])
             addManifestPlaceholders([JPUSH_CHANNEL: "developer-default"])
